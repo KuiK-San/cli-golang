@@ -13,7 +13,8 @@ const VERSION string = "1.0"
 
 func main() {
 	if len(os.Args[1:]) < 1 {
-		fmt.Println("Nenhum argumento encontrado")
+		fmt.Println("Nenhum comando encontrado")
+		helpDefault()
 		return
 	}
 
@@ -29,10 +30,26 @@ func main() {
 	case "--help", "-h":
 		helpDefault()
 	default:
-		fmt.Print(os.Args[1:], " não encontrado")
+		fmt.Print(os.Args[1:], "Não é um comando valido")
+		helpDefault()
 	}
 }
 
 func helpDefault() {
-	fmt.Println("Você entrou no help")
+	fmt.Println("")
+	fmt.Println(`CLI-Server - Ferramenta de linha de comando multifuncional
+
+	USO:
+	cli-server [COMANDO] [SUBCOMANDOS] [OPÇÕES]
+
+	COMANDOS PRINCIPAIS:
+	git         Operações de configuração do git
+	docker      Operações de gerenciamento de containers
+	monitor     Operações de monitoramento de servicos
+
+	OPÇÕES GLOBAIS:
+	-h, --help     Mostra esta mensagem de ajuda
+	-v, --version  Mostra a versão da aplicação `,
+	)
+	fmt.Println("")
 }
